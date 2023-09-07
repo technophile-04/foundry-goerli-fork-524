@@ -4,7 +4,7 @@ import Blockies from "react-blockies";
 import { CopyToClipboard } from "react-copy-to-clipboard";
 import { isAddress } from "viem";
 import { useEnsAvatar, useEnsName } from "wagmi";
-import { hardhat } from "wagmi/chains";
+import { goerli } from "wagmi/chains";
 import { CheckCircleIcon, DocumentDuplicateIcon } from "@heroicons/react/24/outline";
 import { getBlockExplorerAddressLink, getTargetNetwork } from "~~/utils/scaffold-eth";
 
@@ -99,7 +99,7 @@ export const Address = ({ address, disableAddressLink, format, size = "base" }: 
       </div>
       {disableAddressLink ? (
         <span className={`ml-1.5 text-${size} font-normal`}>{displayAddress}</span>
-      ) : getTargetNetwork().id === hardhat.id ? (
+      ) : getTargetNetwork().id === goerli.id ? (
         <span className={`ml-1.5 text-${size} font-normal`}>
           <Link href={blockExplorerAddressLink}>{displayAddress}</Link>
         </span>
