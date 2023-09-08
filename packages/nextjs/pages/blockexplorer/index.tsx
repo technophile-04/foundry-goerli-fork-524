@@ -47,7 +47,7 @@ const Blockexplorer: NextPage = () => {
         </>,
       );
     }
-  }, [error]);
+  }, []);
 
   return (
     <div className="container mx-auto my-10">
