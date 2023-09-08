@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import type { NextPage } from "next";
-import { hardhat } from "wagmi/chains";
+import { goerli } from "wagmi/chains";
 import { PaginationButton } from "~~/components/blockexplorer/PaginationButton";
 import { SearchBar } from "~~/components/blockexplorer/SearchBar";
 import { TransactionsTable } from "~~/components/blockexplorer/TransactionsTable";
@@ -11,7 +11,7 @@ const Blockexplorer: NextPage = () => {
   const { blocks, transactionReceipts, currentPage, totalBlocks, setCurrentPage, isLoading, error } = useFetchBlocks();
 
   useEffect(() => {
-    if (getTargetNetwork().id === hardhat.id && error) {
+    if (getTargetNetwork().id === goerli.id && error) {
       notification.error(
         <>
           <p className="font-bold mt-0 mb-1">Cannot connect to local provider</p>
@@ -26,7 +26,8 @@ const Blockexplorer: NextPage = () => {
       );
     }
 
-    if (getTargetNetwork().id !== hardhat.id) {
+    console.log("The targetNetwork is :---------------------------------", getTargetNetwork().id);
+    if (getTargetNetwork().id !== goerli.id) {
       notification.error(
         <>
           <p className="font-bold mt-0 mb-1">
@@ -46,7 +47,7 @@ const Blockexplorer: NextPage = () => {
         </>,
       );
     }
-  }, [error]);
+  }, []);
 
   return (
     <div className="container mx-auto my-10">

@@ -9,9 +9,38 @@ export type ScaffoldConfig = {
   walletAutoConnect: boolean;
 };
 
+export const goerliFork = {
+  id: 5,
+  network: "goerliFork",
+  name: "Goerli Fork",
+  nativeCurrency: { name: "Goerli", symbol: "ETH", decimals: 18 },
+  rpcUrls: {
+    default: {
+      http: [chains.foundry.rpcUrls.public.http[0]],
+    },
+    public: {
+      http: [chains.foundry.rpcUrls.public.http[0]],
+    },
+  },
+  blockExplorers: {
+    blockscout: {
+      name: "LocalScout",
+      url: "http://localhost:3000/blockexplorer",
+    },
+    default: {
+      name: "Local explorer",
+      url: "http://localhost:3000/blockexplorer",
+    },
+    etherscan: {
+      name: "LocalScan",
+      url: "http://localhost:3000/blockexplorer",
+    },
+  },
+} as const satisfies chains.Chain;
+
 const scaffoldConfig = {
   // The network where your DApp lives in
-  targetNetwork: chains.foundry,
+  targetNetwork: goerliFork,
 
   // The interval at which your front-end polls the RPC servers for new data
   // it has no effect on the local network
